@@ -10,4 +10,10 @@ violator_songs = [
     ['Clean', 5.83]
 ]
 
-# TODO здесь писать код
+flat_violator_songs = sum(violator_songs, [])
+count_music = int(input('Сколько песен выбрать? '))
+duration = 0
+for count in range(count_music):
+    name_music = input('Название ' + str(count + 1) + '-й песни: ')
+    duration += flat_violator_songs[flat_violator_songs.index(name_music) + 1]
+print('Общее время звучания песен:', round(duration, 2), 'минуты')

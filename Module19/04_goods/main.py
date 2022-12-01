@@ -24,4 +24,11 @@ store = {
     ],
 }
 
-# TODO здесь писать код
+for good in goods:
+    count_goods = 0
+    total_price = 0
+    for purchased_goods in store[goods[good]]:
+        count_goods += purchased_goods['quantity']
+        total_price += purchased_goods['quantity'] * purchased_goods['price']
+    print('{0} — {1} штук, стоимость {2:_d} рубля'.format(good, count_goods, total_price).replace('_', ' '))
+    print('{0} — {1} штук, стоимость {2:_d} рубля'.format(good, count_goods, total_price).replace('_', ' '))

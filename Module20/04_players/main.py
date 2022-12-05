@@ -4,4 +4,9 @@ players = {
     ("Rob", "Bobbin"): (12, 8, 2)
 }
 
-# TODO здесь писать код
+
+def anotherFormated(players):
+    return [(key + value) for key, value in players.items()]
+
+
+print(anotherFormated(players))

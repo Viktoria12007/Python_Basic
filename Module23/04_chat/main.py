@@ -10,13 +10,10 @@ def choose_action():
 
 
 def open_read(file_name):
-    try:
-        file = open(file_name, 'r', encoding='utf-8')
-        text = file.read()
-        file.close()
-        return text
-    except FileNotFoundError:
-        raise FileNotFoundError
+    file = open(file_name, 'r', encoding='utf-8')
+    text = file.read()
+    file.close()
+    return text
 
 
 def open_write(file_name):
@@ -30,14 +27,11 @@ def open_edit(file_name, text):
 
 
 def read_chart(file_name):
-    try:
-        text = open_read(file_name)
-        if len(text):
-            print(text)
-        else:
-            print('Чат пуст.')
-    except FileNotFoundError:
-        raise FileNotFoundError
+    text = open_read(file_name)
+    if len(text):
+        print(text)
+    else:
+        print('Чат пуст.')
 
 
 def error_message():

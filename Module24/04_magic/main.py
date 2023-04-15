@@ -1,103 +1,95 @@
 class Water:
-    name = 'Вода'
+    def __str__(self):
+        return 'Вода'
 
     def __add__(self, other):
-        if other.name == 'Воздух':
+        if isinstance(other, Air):
             return Storm()
-        elif other.name == 'Огонь':
+        elif isinstance(other, Fire):
             return Steam()
-        elif other.name == 'Земля':
+        elif isinstance(other, Ground):
             return Dirt()
         else:
-            print(f'Невозможно создать новый элемент из {self.name} и {other.name}!')
+            print(f'Невозможно создать новый элемент из {self} и {other}!')
             return None
 
 
 class Air:
-    name = 'Воздух'
+    def __str__(self):
+        return 'Воздух'
 
     def __add__(self, other):
-        if other.name == 'Вода':
+        if isinstance(other, Water):
             return Storm()
-        elif other.name == 'Огонь':
+        elif isinstance(other, Fire):
             return Lightning()
-        elif other.name == 'Земля':
+        elif isinstance(other, Ground):
             return Dust()
         else:
-            print(f'Невозможно создать новый элемент из {self.name} и {other.name}!')
+            print(f'Невозможно создать новый элемент из {self} и {other}!')
             return None
 
 
 class Fire:
-    name = 'Огонь'
+    def __str__(self):
+        return 'Огонь'
 
     def __add__(self, other):
-        if other.name == 'Воздух':
+        if isinstance(other, Air):
             return Lightning()
-        elif other.name == 'Вода':
+        elif isinstance(other, Water):
             return Steam()
-        elif other.name == 'Земля':
+        elif isinstance(other, Ground):
             return Lava()
         else:
-            print(f'Невозможно создать новый элемент из {self.name} и {other.name}!')
+            print(f'Невозможно создать новый элемент из {self} и {other}!')
             return None
 
 
 class Ground:
-    name = 'Земля'
+    def __str__(self):
+        return 'Земля'
 
     def __add__(self, other):
-        if other.name == 'Воздух':
+        if isinstance(other, Air):
             return Dust()
-        elif other.name == 'Огонь':
+        elif isinstance(other, Fire):
             return Lava()
-        elif other.name == 'Вода':
+        elif isinstance(other, Water):
             return Dirt()
         else:
-            print(f'Невозможно создать новый элемент из {self.name} и {other.name}!')
+            print(f'Невозможно создать новый элемент из {self} и {other}!')
             return None
 
 
 class Storm:
-    name = 'Шторм'
-
-    def created(self):
-        print(f'Создан новый элемент {self.name}!')
+    def __str__(self):
+        return 'Шторм'
 
 
 class Steam:
-    name = 'Пар'
-
-    def created(self):
-        print(f'Создан новый элемент {self.name}!')
+    def __str__(self):
+        return 'Пар'
 
 
 class Dirt:
-    name = 'Грязь'
-
-    def created(self):
-        print(f'Создан новый элемент {self.name}!')
+    def __str__(self):
+        return 'Грязь'
 
 
 class Lightning:
-    name = 'Молния'
-
-    def created(self):
-        print(f'Создан новый элемент {self.name}!')
+    def __str__(self):
+        return 'Молния'
 
 
 class Dust:
-    name = 'Пыль'
-
-    def created(self):
-        print(f'Создан новый элемент {self.name}!')
+    def __str__(self):
+        return 'Пыль'
 
 
 class Lava:
-    name = 'Лава'
-
-    def created(self):
-        print(f'Создан новый элемент {self.name}!')
+    def __str__(self):
+        return 'Лава'
 
 
 try:
@@ -105,9 +97,10 @@ try:
     element_2 = Fire()
 
     element_3 = element_2 + element_1
-    element_3.created()
+    print(element_3)
 
     element_4 = element_1 + element_3
-    element_4.created()
-except AttributeError:
-    print('Вы пытаетесь обратиться к пустому элементу!')
+    print(element_4)
+    print(element_4 + element_1)
+except TypeError:
+    print('Вы пытаетесь соединить не соединяемые элементы!')

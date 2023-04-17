@@ -1,32 +1,79 @@
 class Property:
+    """
+    Базовый класс описывающий имущество
+
+    Args:
+        worth (int): передаётся стоимость имущества
+     """
     def __init__(self, worth):
         self.worth = worth
 
     def get_tax(self):
+        """
+        Геттер для получения налога
+
+        :return: self.worth / self.worth
+        :rtype: float
+        """
         return self.worth / self.worth
 
 
 class Apartment(Property):
+    """
+    Класс Квартира. Родитель: Property
+
+    Args:
+         worth (int): передаётся стоимость имущества
+    """
     def __init__(self, worth):
         super().__init__(worth)
 
     def get_tax(self):
+        """
+        Геттер для получения налога
+
+        :return: self.worth / 1000
+        :rtype: float
+        """
         return self.worth / 1000
 
 
 class Car(Property):
+    """
+    Класс Машина. Родитель: Property
+
+    Args:
+         worth (int): передаётся стоимость имущества
+    """
     def __init__(self, worth):
         super().__init__(worth)
 
     def get_tax(self):
+        """
+        Геттер для получения налога
+
+        :return: self.worth / 200
+        :rtype: float
+        """
         return self.worth / 200
 
 
 class CountryHouse(Property):
+    """ Класс Дача. Родитель: Property
+
+    Args:
+         worth (int): передаётся стоимость имущества
+    """
     def __init__(self, worth):
         super().__init__(worth)
 
     def get_tax(self):
+        """
+        Геттер для получения налога
+
+        :return: self.worth / 500
+        :rtype: float
+        """
         return self.worth / 500
 
 
@@ -46,4 +93,5 @@ def taxes():
         print('Вам не хватает денег:', abs(difference))
 
 
+print(Property.__doc__)
 taxes()

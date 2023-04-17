@@ -2,22 +2,27 @@ import random
 
 
 class KillError(Exception):
+    """ Класс KillError. Родитель: Exception """
     pass
 
 
 class DrunkError(Exception):
+    """ Класс DrunkError. Родитель: Exception """
     pass
 
 
 class CarCrashError(Exception):
+    """ Класс CarCrashError. Родитель: Exception """
     pass
 
 
 class GluttonyError(Exception):
+    """ Класс GluttonyError. Родитель: Exception """
     pass
 
 
 class DepressionError(Exception):
+    """ Класс DepressionError. Родитель: Exception """
     pass
 
 

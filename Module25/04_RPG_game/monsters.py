@@ -2,6 +2,16 @@ import random
 
 
 class Monster:
+    """
+    Базовый класс описывающий Монстра
+
+    Args:
+        name (str): имя монстра
+
+    Attributes:
+        max_hp (int): максимальное количество hp(здоровья) монстра
+        start_power (int): стартовый уровень силы монстра
+    """
     max_hp = 150
     start_power = 10
 
@@ -12,15 +22,39 @@ class Monster:
         self.__is_alive = True
 
     def get_hp(self):
+        """
+        Геттер для получения hp(здоровья) монстра
+
+        :return: self.__hp
+        :rtype: float
+        """
         return self.__hp
 
     def set_hp(self, new_value):
+        """
+        Сеттер для установки hp(здоровья) монстру
+
+        :param new_value: hp(здоровье)
+        :type new_value: float
+        """
         self.__hp = max(new_value, 0)
 
     def get_power(self):
+        """
+        Геттер для получения силы монстра
+
+        :return: self.__power
+        :rtype: float
+        """
         return self.__power
 
     def set_power(self, new_power):
+        """
+        Сеттер для установки силы монстру
+
+        :param new_power: сила
+        :type new_power: float
+        """
         self.__power = new_power
 
     def attack(self, target):
@@ -42,7 +76,17 @@ class Monster:
 
 
 class MonsterBerserk(Monster):
+    """
+    Класс MonsterBerserk. Родитель: Monster
 
+    Args:
+        name (str): имя монстра
+
+    Attributes:
+        max_hp (int): максимальное количество hp(здоровья) монстра
+        start_power (int): стартовый уровень силы монстра
+        madness (float): уровень безумия монстра
+    """
     def __init__(self, name):
         super().__init__(name)
         self.madness = 1
@@ -74,7 +118,17 @@ class MonsterBerserk(Monster):
 
 
 class MonsterHunter(Monster):
+    """
+    Класс MonsterHunter. Родитель: Monster
 
+    Args:
+        name (str): имя монстра
+
+    Attributes:
+        max_hp (int): максимальное количество hp(здоровья) монстра
+        start_power (int): стартовый уровень силы монстра
+        potions (int): уровень зелья монстра
+    """
     def __init__(self, name):
         super().__init__(name)
         self.potions = 10

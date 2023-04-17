@@ -15,6 +15,17 @@ class Hero:
     # - Выбирать действие для выполнения
     # - Описывать своё состояние
 
+    """
+    Базовый класс описывающий Героя
+
+    Args:
+        name (str): имя героя
+
+    Attributes:
+        max_hp (int): максимальное количество hp(здоровья) героя
+        start_power (int): стартовый уровень силы героя
+    """
+
     max_hp = 150
     start_power = 10
 
@@ -25,18 +36,48 @@ class Hero:
         self.__is_alive = True
 
     def get_hp(self):
+        """
+        Геттер для получения hp(здоровья) героя
+
+        :return: self.__hp
+        :rtype: float
+        """
         return self.__hp
 
     def set_hp(self, new_value):
+        """
+        Сеттер для установки hp(здоровья) герою
+
+        :param new_value: hp(здоровье)
+        :type new_value: float
+        """
         self.__hp = max(new_value, 0)
 
     def get_power(self):
+        """
+        Геттер для получения силы героя
+
+        :return: self.__power
+        :rtype: float
+        """
         return self.__power
 
     def set_power(self, new_power):
+        """
+        Сеттер для установки силы герою
+
+        :param new_power: сила
+        :type new_power: float
+        """
         self.__power = new_power
 
     def is_alive(self):
+        """
+        Геттер для получения флага жив или мёртв герой
+
+        :return: self.__is_alive
+        :rtype: boolean
+        """
         return self.__is_alive
 
     # Все наследники должны будут переопределять каждый метод базового класса (кроме геттеров/сеттеров)
@@ -66,6 +107,17 @@ class Hero:
 
 
 class Healer(Hero):
+    """
+    Класс Целитель. Родитель: Hero
+
+    Args:
+        name (str): имя героя
+
+    Attributes:
+        max_hp (int): максимальное количество hp(здоровья) героя
+        start_power (int): стартовый уровень силы героя
+        magic_power (float): уровень магической силы целителя
+    """
     def __init__(self, name):
         super().__init__(name)
         self.magic_power = self.get_power() * 3
@@ -107,6 +159,18 @@ class Healer(Hero):
 
 
 class Tank(Hero):
+    """
+    Класс Танк. Родитель: Hero
+
+    Args:
+        name (str): имя героя
+
+    Attributes:
+        max_hp (int): максимальное количество hp(здоровья) героя
+        start_power (int): стартовый уровень силы героя
+        defence (float): показатель защиты танка
+        is_shield_raised (boolean): флаг поднятия/опускания щита танка
+    """
     def __init__(self, name):
         super().__init__(name)
         self.defense = 1
@@ -163,6 +227,17 @@ class Tank(Hero):
 
 
 class Attacker(Hero):
+    """
+    Класс Убийца. Родитель: Hero
+
+    Args:
+        name (str): имя героя
+
+    Attributes:
+        max_hp (int): максимальное количество hp(здоровья) героя
+        start_power (int): стартовый уровень силы героя
+        power_multiply (float): коэффициент усиления урона (входящего и исходящего) убийцы
+    """
     def __init__(self, name):
         super().__init__(name)
         self.power_multiply = 1

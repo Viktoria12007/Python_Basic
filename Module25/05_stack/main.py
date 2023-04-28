@@ -1,4 +1,5 @@
 class Stack:
+    """ Класс Стек """
     def __init__(self):
         self.__stack = []
 
@@ -6,6 +7,12 @@ class Stack:
         return str(self.__stack)
 
     def get_stack(self):
+        """
+           Геттер для получения стека
+
+           :return: self.__stack
+           :rtype: list
+           """
         return self.__stack
 
     def push(self, element):
@@ -37,6 +44,10 @@ class Stack:
 
 
 class TaskManager:
+    """ Класс Менеджер задач
+        Attributes:
+            tasks (dict): задачи
+        """
     def __init__(self):
         self.tasks = dict()
 

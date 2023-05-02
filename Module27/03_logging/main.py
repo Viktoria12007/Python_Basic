@@ -1,7 +1,6 @@
 import functools
 import datetime
-from collections.abc import Callable
-from typing import Tuple
+from typing import Callable, Any
 
 
 def logging(func: Callable) -> Callable:
@@ -15,7 +14,14 @@ def logging(func: Callable) -> Callable:
         :rtype: function
      """
     @functools.wraps(func)
-    def wrapped_func(*args, **kwargs):
+    def wrapped_func(*args, **kwargs) -> Any:
+        """
+            Функция - обертка
+            :param args:
+            :param kwargs:
+            :return: value
+            :rtype: function
+        """
         name_func = func.__name__
         print(f'Имя функции: {name_func}')
         print(f'Документация: {func.__doc__}')
@@ -29,47 +35,14 @@ def logging(func: Callable) -> Callable:
 
 
 @logging
-def slicer(list: Tuple[int, ...], number: int) -> Tuple[int, ...] | Tuple[()]:
-    """
-        Функция slicer возвращающая часть кортежа начинающего и заканчивающегося переданной цифрой.
-        Если такой цифры нет в кортеже то возвращается пустой кортеж.
-        Если такая цифра встречается в кортеже один раз, то возвращается часть кортежа с вхождения переданной цифры
-        и до конца кортежа.
-        :param list: передаётся кортеж
-        :type list: tuple
-        :param number: передаётся искомая цифра
-        :type number: int
-        :return: () | list[first_appearance:] | list[first_appearance:second_appearance + 1]
-        :rtype: function
-    """
-    current_count = list.count(number)
-    if current_count == 0:
-        raise TypeError("TypeError")
-        return ()
-    else:
-        raise IndexError("IndexError")
-        first_appearance = list.index(number)
-        if current_count == 1:
-            return list[first_appearance:]
-        else:
-            edited_list = list[first_appearance + 1:]
-            second_appearance = edited_list.index(number) + (first_appearance + 1)
-            return list[first_appearance:second_appearance + 1]
-
-
-@logging
 def test() -> None:
     """
-        Функция выводящая print.
+        Проверка декоратора и вывод простого сообщения
         :return: None
         :rtype: None
     """
     raise ValueError("ValueError")
     print('<Тут что-то происходит...>')
 
-
-list_for_check: Tuple[int, ...] = (1, 2, 3, 4, 5, 6, 7, 8, 2, 2, 9, 10)
-desired_number: int = int(input('Введите искомое число: '))
-print(slicer(list_for_check, desired_number))
 
 test()

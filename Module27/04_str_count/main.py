@@ -1,11 +1,10 @@
 import functools
-from collections.abc import Callable
-from typing import Tuple
+from typing import Callable, Any
 
 
 def counter(func: Callable) -> Callable:
     @functools.wraps(func)
-    def wrapped_func(*args, **kwargs):
+    def wrapped_func(*args, **kwargs) -> Any:
         value = func(*args, **kwargs)
         wrapped_func.count += 1
         print(f'Количество вызовов декорируемой функции {func.__name__}: {wrapped_func.count}')
@@ -39,25 +38,5 @@ def test() -> None:
     print('<Тут что-то происходит...>')
 
 
-@counter
-def slicer(list: Tuple[int, ...], number: int) -> None:
-    current_count = list.count(number)
-    if current_count == 0:
-        print(())
-    else:
-        first_appearance = list.index(number)
-        if current_count == 1:
-            print(list[first_appearance:])
-        else:
-            edited_list = list[first_appearance + 1:]
-            second_appearance = edited_list.index(number) + (first_appearance + 1)
-            print(list[first_appearance:second_appearance + 1])
-
-
-list_for_check: Tuple[int, ...] = (1, 2, 3, 4, 5, 6, 7, 8, 2, 2, 9, 10)
-desired_number: int = int(input('Введите искомое число: '))
-slicer(list_for_check, desired_number)
 test()
-slicer(list_for_check, desired_number)
-slicer(list_for_check, desired_number)
 test()

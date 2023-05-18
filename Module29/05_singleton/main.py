@@ -1,8 +1,7 @@
 import functools
-from typing import Callable
 
 
-def singleton(cls: object) -> Callable:
+def singleton(cls):
     @functools.wraps(cls)
     def wrapper(*args, **kwargs):
         if isinstance(wrapper.instance, cls) is False:

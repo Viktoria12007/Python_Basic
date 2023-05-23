@@ -1,6 +1,15 @@
-# TODO здесь писать код
+import re
+from typing import List
+import requests
 
-# В данном случае запрос request.get заменен на загрзку сайта из файла html
+
+def get_h3_content(text: str) -> List[str]:
+    return [item[1] for item in re.findall(r'(<h3>)(.+)(</h3>)', text)]
+
+
 with open('examples.html', 'r') as f:
-    text = f.read()
-# По итогу вы так же получаете код сайта в виде одной строки
+    text: str = f.read()
+    print(get_h3_content(text))
+
+result: object = requests.get('https://tproger.ru/translations/regular-expression-python/')
+print(get_h3_content(result.text))
